@@ -20,12 +20,13 @@ def home_view(request):
 
 
 def time_view(request):
-    current_time = datetime.now()
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     msg = f'Текущее время: {current_time}'
     return HttpResponse(msg)
 
 
 def workdir_view(request):
     all_files = os.listdir(os.getcwd())
-    msg = f'Список файлов в рабочей директории: {all_files}'
+    formatted_files = '<br>'.join(all_files)
+    msg = f'<h2>Список файлов в рабочей директории:</h2><p>{formatted_files}</p>'
     return HttpResponse(msg)
